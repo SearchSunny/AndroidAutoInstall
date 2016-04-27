@@ -1,0 +1,9 @@
+参考Blog http://blog.csdn.net/yyh352091626/article/details/50533137
+这个测试这个案例仅在5.0系统(也只能在虚拟机)下才可进行。
+工程中的系统签名文件夹中包含的是需要对APK进行系统签名(因为系统并不认为你这个app是系统级别的应用，所以，还应该对该应用的APK进行系统签名（注意：不是那个静默安装的APK，是这个实现静默安装程序的APK)
+总共需要三个文件：
+1、SignApk.jar                      %系统源码%/out/host/linux-x86/framework/signapk.jar
+2、platform.x509.pem          %系统源码%/build/target/product/security/platform.x509.pem
+3、platform.pk8                    %系统源码%/build/target/product/security/platform.pk8
+打开终端，执行命令 java -jar SignApk.jar platform.x509.pem platform.pk8 未签名APK 签名后APK(名字可以随便写，但一定要有)，例如
+java -jar SignApk.jar platform.x509.pem  platform.pk8 AndroidAutoInstall.apk AndroidAutoInstall_new.apk  
